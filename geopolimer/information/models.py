@@ -137,11 +137,13 @@ class Example(models.Model):
     href = models.CharField(max_length=200, blank=True, verbose_name='URL картинки', help_text='URL картинки в приблежениии')
     src = models.CharField(max_length=200, blank=True, verbose_name='URL картинки', help_text='URL картинки')
     slug = models.SlugField(null=True, unique=True, blank=True, verbose_name='URL адрес', help_text='название url адреса')
+    alt = models.CharField(max_length=150, blank=True, verbose_name='Alt картинка', help_text='описание картинки')
     projectname = models.CharField(max_length=200, blank=True, verbose_name='Название проекта', help_text='название проекта')
     description = models.TextField(max_length=300, blank=True, verbose_name='Описание страницы', help_text='описание страницы в поискаовика')
     keywords = models.TextField(max_length=300, blank=True, verbose_name='Ключевые слова', help_text='ключевые слова для поисковика')
     def __str__(self):
         return self.projectname
+
 
 class Pictures(models.Model):
     class Meta:
@@ -149,6 +151,7 @@ class Pictures(models.Model):
         verbose_name_plural = "Фото примера"
     name = models.ForeignKey('Example', on_delete=models.CASCADE, related_name="pictures", null=True, verbose_name='Пример', help_text='привязка к примеру')
     href1 = models.CharField(max_length=200, blank=True, verbose_name='URL фото', help_text='URL фото примера')
+    alt = models.CharField(max_length=150, blank=True, verbose_name='Alt картинка', help_text='описание картинки')
     def __str__(self):
         return self.name.projectname
 
@@ -189,6 +192,7 @@ class Pagenext(CommonInfo):
     projname = models.ForeignKey('Subnavigator', on_delete=models.CASCADE, related_name="subnext", null=True, blank=True, verbose_name='Подменю', help_text='привязка к подменю')
     title = models.CharField(max_length=100, blank=True,verbose_name='Заголовок3', help_text='заголовок')
     urljpg = models.CharField(max_length=100, blank=True, verbose_name='URL фото', help_text='URL фото')
+    alt = models.CharField(max_length=150, blank=True, verbose_name='Alt картинка', help_text='описание картинки')
     textup = models.TextField(blank=True,verbose_name='Текст3', help_text='текст')
     quote = models.TextField(blank=True,verbose_name='Текст4', help_text='текст')
     textdown = models.TextField(blank=True,verbose_name='Текст5', help_text='текст')
@@ -243,6 +247,8 @@ class Etapy(Commoncontact):
     answernext = models.TextField(blank=True, verbose_name='Ответ списка', help_text='ответ списка')
     href = models.CharField(max_length=200, blank=True, verbose_name='URL фото', help_text='URL фото примера')
     href1 = models.CharField(max_length=200, blank=True, verbose_name='URL фото1', help_text='URL фото примера')
+    alt = models.CharField(max_length=150, blank=True, verbose_name='Alt картинка', help_text='описание картинки')
+    alt1 = models.CharField(max_length=150, blank=True, verbose_name='Alt картинка', help_text='описание картинки')
     def __str__(self):
         return self.name
 
